@@ -1,7 +1,8 @@
+%define oname gmime
 %define	major 2
 %define apiver 2.4
-%define libname %mklibname %{name} %{apiver} %{major}
-%define develname %mklibname %{name} -d
+%define libname %mklibname %{oname} %{apiver} %{major}
+%define develname %mklibname %{oname} %{apiver} -d
 
 %define build_mono 1
 
@@ -14,13 +15,13 @@
 
 %define _requires_exceptions libgmime
 Summary:		The libGMIME library
-Name:			gmime
+Name:			gmime2.4
 Version:		2.4.26
 Release:		%mkrel 1
 License:		LGPLv2+
 Group:			System/Libraries
 URL:			http://spruce.sourceforge.net/gmime
-Source0:		http://ftp.gnome.org/pub/GNOME/sources/%name/%{name}-%{version}.tar.xz
+Source0:		http://ftp.gnome.org/pub/GNOME/sources/%oname/%{oname}-%{version}.tar.xz
 BuildRequires:		glib2-devel
 BuildRequires:		gtk-doc
 BuildRequires:		libz-devel
@@ -38,6 +39,7 @@ This library allows you to manipulate MIME messages.
 Summary:	Utilities using the libGMIME library
 Group:		File tools
 Requires:	%{libname} = %{version}-%{release}
+Conflicts: %{oname}-utils
 
 %description -n %{name}-utils
 This package contains gmime-uudecode and gmime-uuencode and will 
@@ -47,9 +49,9 @@ used instead of uudecode and uuencode from the sharutils package.
 %package -n %{libname}
 Summary:	The libGMIME library
 Group:		System/Libraries
-Obsoletes:	%mklibname %{name} 2.0
-Provides:	%mklibname %{name} 2.0
-Provides:	lib%{name} = %{version}-%{release}
+Obsoletes:	%mklibname %{oname} 2.0
+Provides:	%mklibname %{oname} 2.0
+Provides:	lib%{oname} = %{version}-%{release}
 
 %description -n %{libname}
 This library allows you to manipulate MIME messages.
@@ -60,8 +62,8 @@ Group:		Development/C
 Provides:	lib%{name}-devel
 Provides:	%{name}-devel
 Requires:	%{libname} = %{version}-%{release}
-Obsoletes:	%mklibname %{name} 2.0 -d
-Provides:	%mklibname %{name} 2.0 -d
+Obsoletes:	%mklibname %{oname} 2.0 -d
+Provides:	%mklibname %{oname} 2.0 -d
 
 %description -n %{develname}
 This package contains the lib%{name} development library and its header files.
@@ -104,15 +106,6 @@ mv %{buildroot}%{_bindir}/uuencode %{buildroot}%{_bindir}/gmime-uuencode
 
 # cleanup
 rm -f %{buildroot}%{_libdir}/gmimeConf.sh
-
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %clean
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
