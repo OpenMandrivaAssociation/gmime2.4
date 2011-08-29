@@ -132,7 +132,7 @@ rm -f %{buildroot}%{_libdir}/gmimeConf.sh
 %if %{build_mono}
 %files sharp
 %defattr(-,root,root)
-%{_prefix}/lib/mono/gac/%{name}-sharp
-%{_prefix}/lib/mono/%{name}-sharp-%{apiver}
-%{_libdir}/pkgconfig/%{name}-sharp-%{apiver}.pc
+%{_prefix}/lib/mono/gac/%{oname}-sharp
+%{_prefix}/lib/mono/%{oname}-sharp-%{apiver}
+%{_libdir}/pkgconfig/%{oname}-sharp-%{apiver}.pc
 %endif
