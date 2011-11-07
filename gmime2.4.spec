@@ -22,6 +22,7 @@ License:		LGPLv2+
 Group:			System/Libraries
 URL:			http://spruce.sourceforge.net/gmime
 Source0:		http://ftp.gnome.org/pub/GNOME/sources/%oname/%{oname}-%{version}.tar.xz
+Patch0: gmime-2.4.28-glib-deprecation.patch
 BuildRequires:		glib2-devel
 BuildRequires:		gtk-doc
 BuildRequires:		libz-devel
@@ -30,6 +31,8 @@ BuildRequires:		mono-devel
 BuildRequires:		gtk-sharp2-devel
 BuildRequires:		gtk-sharp2
 %endif
+#gw: autoconf:
+BuildRequires:		gettext-devel
 Buildroot:		%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -81,6 +84,9 @@ This library allows you to manipulate MIME messages.
 %prep
 
 %setup -q -n %oname-%version
+%apply_patches
+
+autoreconf -fi
 
 %build
 
