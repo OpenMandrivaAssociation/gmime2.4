@@ -130,7 +130,6 @@ rm -f %{buildroot}%{_libdir}/gmimeConf.sh
 %doc AUTHORS ChangeLog PORTING README TODO
 %{_libdir}/lib*.a
 %{_libdir}/lib*.so
-%{_libdir}/lib*.la
 %{_libdir}/pkgconfig/gmime-%{apiver}.pc
 %{_includedir}/*
 %doc %{_gtkdocdir}/*
