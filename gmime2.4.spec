@@ -106,10 +106,6 @@ make check
 
 %makeinstall_std
 
-# these are provided by sharutils, gotta rename them...
-mv %{buildroot}%{_bindir}/uudecode %{buildroot}%{_bindir}/gmime-uudecode
-mv %{buildroot}%{_bindir}/uuencode %{buildroot}%{_bindir}/gmime-uuencode
-
 # cleanup
 rm -f %{buildroot}%{_libdir}/gmimeConf.sh
 
