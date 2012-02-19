@@ -112,11 +112,6 @@ rm -f %{buildroot}%{_libdir}/gmimeConf.sh
 %clean
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
 
-%files -n %{name}-utils
-%defattr(-,root,root)
-%{_bindir}/gmime-uudecode
-%{_bindir}/gmime-uuencode
-
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/lib*%{apiver}.so.%{major}*
