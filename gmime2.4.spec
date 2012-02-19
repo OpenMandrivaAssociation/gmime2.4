@@ -38,17 +38,6 @@ Buildroot:		%{_tmppath}/%{name}-%{version}-buildroot
 %description
 This library allows you to manipulate MIME messages.
 
-%package -n %{name}-utils
-Summary:	Utilities using the libGMIME library
-Group:		File tools
-Requires:	%{libname} = %{version}-%{release}
-Conflicts: %{oname}-utils
-
-%description -n %{name}-utils
-This package contains gmime-uudecode and gmime-uuencode and will 
-allow you to manipulate MIME messages. These utilities can also be
-used instead of uudecode and uuencode from the sharutils package. 
-
 %package -n %{libname}
 Summary:	The libGMIME library
 Group:		System/Libraries
