@@ -109,11 +109,6 @@ make check
 # cleanup
 rm -f %{buildroot}%{_libdir}/gmimeConf.sh
 
-%if %_lib != lib
-mkdir %buildroot%_prefix/lib/
-mv %buildroot%_libdir/mono %buildroot%_prefix/lib/
-%endif
-
 %clean
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
 
