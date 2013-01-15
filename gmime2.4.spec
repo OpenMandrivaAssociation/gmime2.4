@@ -30,6 +30,7 @@ Group:		System/Libraries
 URL:		http://spruce.sourceforge.net/gmime
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{oname}/%{url_ver}/%{oname}-%{version}.tar.xz
 Patch0:		gmime-2.4.28-glib-deprecation.patch
+Patch1:		gmime2.4-automake-1.13.patch
 
 BuildRequires:	gtk-doc
 BuildRequires:	pkgconfig(glib-2.0)
