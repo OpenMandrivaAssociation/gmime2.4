@@ -1,13 +1,12 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
 %define oname	gmime
+%define api	2.4
 %define major	2
-%define apiver	2.4
-%define libname %mklibname %{oname} %{apiver} %{major}
-%define devname %mklibname %{oname} %{apiver} -d
+%define libname %mklibname %{oname} %{api} %{major}
+%define devname %mklibname %{oname} %{api} -d
 
 %define build_mono 1
-
 %ifarch %mips %arm
 %define build_mono 0
 %endif
@@ -22,7 +21,7 @@
 %endif
 
 Summary:	The libGMIME library
-Name:		%{oname}%{apiver}
+Name:		%{oname}%{api}
 Version:	2.4.33
 Release:	1
 License:	LGPLv2+
@@ -33,15 +32,14 @@ Patch0:		gmime-2.4.28-glib-deprecation.patch
 Patch1:		gmime2.4-automake-1.13.patch
 
 BuildRequires:	gtk-doc
+BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(zlib)
 %if %{build_mono}
-BuildRequires:	mono-devel
-BuildRequires:	gtk-sharp2-devel
-BuildRequires:	gtk-sharp2
+BuildRequires: pkgconfig(gapi-2.0)
+BuildRequires: pkgconfig(gtk-sharp-2.0)
+BuildRequires: pkgconfig(mono)
 %endif
-#gw: autoconf:
-BuildRequires:	gettext-devel
 
 %description
 This library allows you to manipulate MIME messages.
@@ -90,6 +88,7 @@ autoreconf -fi
 
 %build
 %configure2_5x \
+	--disable-static \
 	--with-html-dir=%{_gtkdocdir} \
 	--enable-gtk-doc
 
@@ -107,20 +106,19 @@ make check
 rm -f %{buildroot}%{_libdir}/gmimeConf.sh
 
 %files -n %{libname}
-%{_libdir}/lib*%{apiver}.so.%{major}*
+%{_libdir}/libgmime-%{api}.so.%{major}*
 
 %files -n %{devname}
 %doc AUTHORS ChangeLog PORTING README TODO
-%{_libdir}/lib*.a
 %{_libdir}/lib*.so
-%{_libdir}/pkgconfig/gmime-%{apiver}.pc
+%{_libdir}/pkgconfig/gmime-%{api}.pc
 %{_includedir}/*
 %doc %{_gtkdocdir}/*
 
 %if %{build_mono}
 %files sharp
 %{_prefix}/lib/mono/gac/%{oname}-sharp
-%{_prefix}/lib/mono/%{oname}-sharp-%{apiver}
-%{_libdir}/pkgconfig/%{oname}-sharp-%{apiver}.pc
+%{_prefix}/lib/mono/%{oname}-sharp-%{api}
+%{_libdir}/pkgconfig/%{oname}-sharp-%{api}.pc
 %endif
 
