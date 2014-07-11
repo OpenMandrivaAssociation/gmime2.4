@@ -23,7 +23,7 @@
 Summary:	The libGMIME library
 Name:		%{oname}%{api}
 Version:	2.4.33
-Release:	6
+Release:	7
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://spruce.sourceforge.net/gmime
